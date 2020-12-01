@@ -1,0 +1,21 @@
+{% extends 'doctor/doctor_base.html' %}
+{% load static %}
+{% load bootstrap3 %}
+{% block predoctor %}
+<form method="POST">
+    {% csrf_token %}
+    {% bootstrap_form v_form %}
+    <label for="username">MOBILE NUMBER</label>
+    <input type="text" id="username" name="username" placeholder="Enter mobile number">
+    <p>
+        <input type="date" name="day" value="Day"></p>
+    <p>
+        <input type="time" name="time" value="Time"></p>
+    <p>
+    <input class="btn btn-simple" type="submit" value="FIX MEETING">
+
+</form>
+
+
+
+{% endblock %}

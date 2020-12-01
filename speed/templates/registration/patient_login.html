@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+{% load static %}
+{% load bootstrap3 %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+
+
+    </style>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/speed.css' %}">
+</head>
+<body>
+<nav class="navbar myrole" role="navigation" id="navbar">
+    <div class="container">
+        <img id="id" src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTu20HgDymXN4mJxmiJy8rkFzAxxsxGycd0jw&usqp=CAU">
+        <a class="navbar-brand mynav" style="font-size:35px" href="{% url 'home' %}">
+            SpeedCare</a>
+        <ul class="nav navbar-nav navbar-right">
+            <li><a class="btn btn-simple" style="font-size:25px" href="{% url 'search' %}">Nearby Clinic</a></li>
+            <li class="dropdown"><a class="dropdown toggle" style="font-size:25px" data-toggle="dropdown" href="#">Register
+            <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+
+                    <li><a class="btn btn-simple" href="{% url 'pat_reg' %}">Patient</a></li>
+                </ul>
+            </li>
+            <li class="dropdown"><a class="dropdown toggle" style="font-size:25px" data-toggle="dropdown" href="#">Login
+            <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a class="btn btn-simple" href="{% url 'speed:doc_user_login' %}">Doctor</a></li>
+                    <li><a class="btn btn-simple" href="{% url 'pat_user_login' %}">Patient</a></li>
+                </ul>
+            </li>
+            <li><a class="btn btn-simple" style="font-size:25px" href="{% url 'thanks' %}">Logout</a></li>
+
+
+        </ul>
+    </div>
+</nav>
+<h1 style="margin-left:1160px">Login Page!</h1>
+<div class="col-md-8"><img style="width:1050px;height:550px" src="https://mobisoftinfotech.com/resources/wp-content/uploads/2018/07/Banner-1.png"></div>
+<div class="list-group" style="margin-top:120px;width:400px;margin-left:1070px">
+<form method="POST">
+    {% csrf_token %}
+    <div class="list-group-item" style="height:200px;">
+    <label for="username">MOBILE NUMBER</label>
+    <div class="input-group">
+      <span class="input-group-addon"><i class="glyphicon glyphicon-phone"></i></span>
+        <input type="text" id="username" class="form-control" name="username" placeholder="Enter mobile number"></div>
+    <p></p>
+        <input type="submit" class="btn btn-primary" value="Login"></div></div>
+    {% for message in messages %}
+
+                    <div class="alert alert-warning">
+                        <a class="close" href="{% url 'pat_user_login' %}" data-dismiss="alert">×</a>
+
+                        {{ message }}
+
+                    </div>
+            {% endfor %}
+</form>
+</body>
+</html>

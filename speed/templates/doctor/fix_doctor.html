@@ -1,0 +1,14 @@
+{% extends 'doctor/doctor_base.html' %}
+{% load bootstrap3 %}
+{% block predoctor %}
+<form method="POST">
+    {% csrf_token %}
+    {% bootstrap_form form %}
+    <p>
+        <input type="date" name="day" value="Day"></p>
+    <p>
+        <input type="time" name="time" value="Time"></p>
+    <p>
+    <input type="submit" class="btn btn-simple btn-large" value="FIX MEETING">
+</form>
+{% endblock %}

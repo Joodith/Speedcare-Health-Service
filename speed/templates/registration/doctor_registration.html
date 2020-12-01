@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+{% load static %}
+{% load bootstrap3 %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+
+
+    </style>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/speed.css' %}">
+</head>
+<body>
+<nav class="navbar myrole" role="navigation" id="navbar">
+    <div class="container">
+        <img id="id" src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTu20HgDymXN4mJxmiJy8rkFzAxxsxGycd0jw&usqp=CAU">
+        <a class="navbar-brand mynav" style="font-size:35px" href="{% url 'home' %}">
+            SpeedCare</a>
+        <ul class="nav navbar-nav navbar-right">
+            <li><a class="btn btn-simple" style="font-size:25px" href="{% url 'search' %}">Nearby Clinic</a></li>
+            <li class="dropdown"><a class="dropdown toggle" style="font-size:25px" data-toggle="dropdown" href="#">Register
+            <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a class="btn btn-simple" href="{% url 'speed:doc_reg' username=user.username %}">Doctor</a></li>
+                    <li><a class="btn btn-simple" href="{% url 'pat_reg' %}">Patient</a></li>
+                </ul>
+            </li>
+            <li class="dropdown"><a class="dropdown toggle" style="font-size:25px" data-toggle="dropdown" href="#">Login
+            <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a class="btn btn-simple" href="{% url 'speed:doc_user_login' %}">Doctor</a></li>
+                    <li><a class="btn btn-simple" href="{% url 'pat_user_login' %}">Patient</a></li>
+                </ul>
+            </li>
+            <li><a class="btn btn-simple" style="font-size:25px" href="{% url 'thanks' %}">Logout</a></li>
+
+
+        </ul>
+    </div>
+</nav>
+{% block body_block %}
+<div class="jumbotron">
+<h2>Registration Page!</h2>
+{% if registered %}
+<h1>Thank you for registering!</h1>
+{% else %}
+<form method="POST">
+    {% csrf_token %}
+    {% bootstrap_form reg_form %}
+
+    {% for message in messages %}
+
+                    <div class="alert alert-warning">
+                        <a class="close" href="{% url 'speed:doc_reg' username=user.username %}" data-dismiss="alert">×</a>
+
+                        {{ message }}
+
+                    </div>
+            {% endfor %}
+    <input type="submit" class="btn btn-primary" value="Register">
+</form>
+{% endif %}
+</div>
+{% endblock %}

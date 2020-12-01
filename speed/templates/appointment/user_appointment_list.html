@@ -1,0 +1,38 @@
+{% extends 'patient/patient_base.html' %}
+{% block prepatient %}
+<div class="col-md-8">
+
+<div class="card" style="width:390px">
+    <img class="card-img-top" src="https://www.pngkey.com/png/detail/100-1007126_patient-persona-doctor-and-patient-animated.png" alt="Image" style="width:350px; height:250px">
+    <div class="card-body">
+        <h1 class="card-title">{{appointment_user.name}}</h1>
+        <p>
+            <div class="card-text" style="font-size:25px">
+        <p><strong>Age:</strong>{{appointment_user.age}}</p>
+        <p><strong>Contact number:</strong>{{appointment_user}}</p>
+        <p>App:{{appointment_user.appointments.count}}</p>
+
+    </div>
+    </p>
+</div>
+</div>
+</div>
+
+{% endblock %}
+{% block patient_content %}
+<div class="col-md-4">
+    <h2>APPOINTMENTS LIST</h2>
+    {% if not appointment_user.appointments.count %}
+    <h3>No appointments!</h3>
+    {% else %}
+    {% for appointment in appointment_user.appointments.all %}
+    {% if appointment.delt %}
+    {% for i in order_user.order_pat.all %}
+    {{i}}
+    {% endfor %}
+    {% include "appointment/appointment_list.html" %}
+    {% endif %}
+    {% endfor %}
+</div>
+{% endif %}
+{% endblock %}

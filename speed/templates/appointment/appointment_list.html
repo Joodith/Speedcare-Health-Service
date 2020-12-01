@@ -1,0 +1,30 @@
+{% block body_block %}
+
+    <div class="list-group" style="width:500px">
+        <div class="list-group-item">
+            <h3 class="title list-group-item-heading"><strong>Doctor Name:</strong>{{appointment.doctor.name}}</h3>
+            <h5 class="list-group-item-text"><strong>Appointment for:</strong>{{appointment.subject}}</h5>
+            <h5 class="list-group-item-text"><strong>Create Date:</strong>{{appointment.created_at}}</h5>
+            <h5 class="list-group-item-text"><strong>Doctor contact no:</strong>{{appointment.doctor.contact_no}}</h5>
+
+    {% if user.is_authenticated %}
+    <a href="{% url 'cancel_pat' username=appointment.patient.user pk=appointment.pk %}" title="delete" class="btn btn-simple">
+    <span class="glyphicon glyphicon-remove text-danger" aria-hidden="true"></span>
+     <span class="text-danger icon-label">Cancel the appointment</span>
+        </a>
+            <a href="{% url 'delete_pat' username=appointment.patient.user pk=appointment.pk %}" title="delete" class="btn btn-simple">
+    <span class="glyphicon glyphicon-trash text-danger" aria-hidden="true"></span>
+     <span class="text-danger icon-label">Delete from list</span>
+        </a>
+            {% if not appointment.pay_status %}
+            <a href="{% url 'process' pk=appointment.doctor.user.pk %}" class="btn btn-primary">Confirm Pay</a>
+            {% else %}
+            <h3>Paid</h3>
+            {% endif %}
+    {% endif %}
+
+        </div>
+    </div>
+
+
+{% endblock %}

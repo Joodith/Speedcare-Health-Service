@@ -1,0 +1,19 @@
+{% extends 'patient/patient_base.html' %}
+{% block prepatient %}
+<h2>Are you sure of cancelling the appointment?</h2>
+
+    <div class="list-group">
+        <div class="list-group-item">
+            <h3 class="title list-group-item-heading"><strong>Doctor Name:</strong>{{appointment.doctor.name}}</h3>
+            <h4 class="list-group-item-text"><strong>Appointment for:</strong>{{appointment.subject}}</h4>
+            <h4 class="list-group-item-text"><strong>Create Date:</strong>{{appointment.created_at}}</h4>
+            <h4 class="list-group-item-text"><strong>Doctor contact no:</strong>{{appointment.doctor.contact_no}}</h4>
+        </div>
+    </div>
+
+<form method="POST">
+    {% csrf_token %}
+    <input type="submit" value="Cancel the appointment" class="btn btn-danger btn-large">
+    <a href="{% url 'for_patient' username=appointment.patient.user.username %}" class="btn btn-simple btn-large">Back to page</a>
+</form>
+{% endblock %}

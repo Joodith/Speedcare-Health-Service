@@ -1,0 +1,13 @@
+{% extends "doctor/doctor_base.html" %}
+{% block doctor_content %}
+<div class="container">
+    <div class="list-group">
+        {% for i in res %}
+        <a href="{% url 'detail_clinic' slug=i.slug %}" class="list-group-item">
+            <h3 class="title list-group-item-heading">{{i.name}}</h3>
+            <h3 class="title list-group-item-text">{{i.address}}</h3>
+        </a>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

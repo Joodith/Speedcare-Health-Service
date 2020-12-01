@@ -1,0 +1,15 @@
+
+{% block body_block %}
+<div class="container">
+    <div class="list-group">
+         <a href="{% url 'home' %}" class="list-group-item">
+             <h3 class="title list-group-item-heading"><strong>Patient Name:</strong>{{appointment.patient.name}}</h3>
+            <h5 class="list-group-item-text"><strong>Patient problem:</strong>{{appointment.subject}}</h5>
+            <h5 class="list-group-item-text"><strong>Patient Age:</strong>{{appointment.patient.age}}</h5>
+            <h5 class="list-group-item-text"><strong>Patient Contact number:</strong>{{appointment.patient}}</h5>
+            <h5 class="list-group-item-text"><strong>Date:</strong>{{appointment.created_at}}</h5>
+        </a>
+
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends 'doctor/doctor_base.html' %}
+{% block predoctor %}
+<div class="container">
+
+<div class="card" style="width:390px">
+    <img class="card-img-top" src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTcEUQjtV3z494gJagmY2fOO9psTksj4SMhoQ&usqp=CAU" alt="Image" style="width:350px; height:250px">
+    <div class="card-body">
+        <h1 class="card-title">{{doctor.name}}</h1>
+        <p>
+            <div class="card-text" style="font-size:25px">
+        <p><strong>Qualification:</strong>{{doctor.qualf}}</p>
+        <p><strong>Specialisation:</strong>{{doctor.special}}</p>
+        <p><strong>Contact_no:</strong>{{doctor.contact_no}}</p>
+        <p><strong>Email-id:</strong>{{doctor.user.email}}</p>
+    </div>
+    </p>
+</div>
+</div>
+{% endblock %}
+
+{% block doctor_content %}
+<div class="col-md-4" style="margin-left:350px">
+    <a class="btn btn-primary " style="font-size:30px" href="{% url 'meet_fix' pk=doctor.pk %}">Virtual Meet</a></div>
+
+{% endblock %}

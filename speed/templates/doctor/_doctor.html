@@ -1,0 +1,12 @@
+
+{% block body_block %}
+<div class="container">
+    <div class="list-group" style="width:400px;margin-right:100px">
+        <a href="{% url 'virtual_meet' username=doctor.user.username pk=doctor.pk %}" class="list-group-item">
+            <h3 class="title list-group-item-heading">{{doctor.name}}</h3>
+            <h5 class="list-group-item-text">{{doctor.qualf}}</h5>
+            <h5 class="list-group-item-text">{{doctor.special}}</h5>
+        </a>
+    </div>
+</div>
+{% endblock %}

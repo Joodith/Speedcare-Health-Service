@@ -1,0 +1,14 @@
+{% extends 'doctor/doctor_base.html' %}
+{% load static %}
+{% block doctor_content %}
+<div class="jumbotron">
+<form method="POST">
+    {% csrf_token %}
+    <for id="place">ENTER YOUR LOCATION:</for>
+    <input type="text" id="place" name="address">
+    <p>
+    <input type="submit" class="btn btn-primary" value="View map">
+    </p>
+    </form>
+    </div>
+{% endblock %}

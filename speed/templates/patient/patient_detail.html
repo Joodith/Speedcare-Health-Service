@@ -1,0 +1,17 @@
+{% extends 'patient/patient_base.html' %}
+{% block prepatient %}
+<div class="container">
+
+<div class="card" style="width:390px">
+    <img class="card-img-top" src="https://www.pngkey.com/png/detail/100-1007126_patient-persona-doctor-and-patient-animated.png" alt="Image">
+        <h1 class="card-title">{{patient.name}}</h1>
+        <p>
+            <div class="card-text" style="font-size:25px">
+        <p><strong>Age:</strong>{{patient.age}}</p>
+        <p><strong>Contact_no:</strong>{{patient.contact_no}}</p>
+
+    </div>
+    </p>
+</div>
+</div>
+{% endblock %}

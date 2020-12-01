@@ -1,0 +1,8 @@
+{% extends 'patient/patient_base.html' %}
+{% block patient_content %}
+<div class="col-md-4">
+    {% for appointment in appointment_list %}
+    {% include "appointment/appointment_list.html" %}
+    {% endfor %}
+</div>
+{% endblock %}

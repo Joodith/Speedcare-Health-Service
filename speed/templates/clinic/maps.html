@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+  <head>
+    <title>Place Searches</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/speed.css' %}">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <script defer
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDukQN2gupGTAS8_iHOFUXYNdwjlKI8-o0&callback=initMap"
+
+    ></script>
+    <style>
+    li{
+      font-size:40px;
+      color:green;
+    }
+    ol{
+    font-size:40px;
+    color:red;
+    }
+  </style>
+  </head>
+  <body>
+  <script>
+var lat1,long1,lat2,long2,data,y;
+    function myJavascriptFunction(d){
+
+    data=d;
+    if(navigator.geolocation){
+               // timeout at 60000 milliseconds (60 seconds)
+               var options = {timeout:60000};
+               navigator.geolocation.getCurrentPosition
+               (initMap, errorHandler, options);
+            } else{
+               alert("Sorry, browser does not support geolocation!");
+            }
+}
+function errorHandler(err) {
+            if(err.code == 1) {
+               alert("Error: Access is denied!");
+            } else if( err.code == 2) {
+               alert("Error: Position is unavailable!");
+            }
+         }
+
+
+      let map;
+      let service;
+      let infowindow;
+
+      function initMap(position) {
+      var s=JSON.parse(data);
+
+      lat1= position.coords.latitude;
+      long1= position.coords.longitude;
+
+        const sydney = new google.maps.LatLng(lat1,long1);
+        infowindow = new google.maps.InfoWindow();
+        map = new google.maps.Map(document.getElementById("map"), {
+          center: sydney,
+          zoom: 15,
+        });
+        const marker = new google.maps.Marker({
+
+          position:sydney
+        });
+        marker.setMap(map);
+        google.maps.event.addListener(marker, "click", () => {
+          infowindow.setContent(sydney.name);
+          infowindow.open(map);
+        });
+        var ol=document.getElementById("ol");
+        document.getElementById("h2").innerHTML="List of clinics which are less than 500 kms from your current location:";
+        var count=0;
+        alert("Found out!");
+for(let i=0;i<s.length;i++){
+   lat2=s[i].fields.latitude;
+  long2=s[i].fields.longitude;
+    const more= new google.maps.LatLng(lat2,long2);
+  function deg2rad(deg){return deg * (Math.PI/180);}
+  function square(x){return Math.pow(x, 2);}
+  var r=6371; // radius of the earth in km
+  lat1=deg2rad(lat1);
+  lat2=deg2rad(lat2);
+  var lat_dif=lat2-lat1;
+  var lng_dif=deg2rad(long2-long1);
+  var a=square(Math.sin(lat_dif/2))+Math.cos(lat1)*Math.cos(lat2)*square(Math.sin(lng_dif/2));
+  var distance=2*r*Math.asin(Math.sqrt(a));
+
+if(distance<500){
+s[i].fields.near=true;
+let li=document.createElement("li");
+li.innerHTML=s[i].fields.clinic;
+ol.append(li);
+count=count+1;
+}
+
+
+}
+if(count==0){ol.innerHTML="No clinics are within the given range!!";}
+data=JSON.stringify(s);
+return data;
+}
+
+</script>
+  <nav class="navbar myrole" role="navigation" id="navbar">
+    <div class="container"><a class="navbar-brand mynav" style="font-size:35px" href="{% url 'home' %}">
+            SpeedCare</a>
+
+        <ul class="nav navbar-nav navbar-right">
+
+            <li><a class="btn btn-simple" style="font-size:25px" href="{% url 'search' %}">Go Back</a></li>
+        </ul>
+    </div>
+</nav>
+   <div id="id"></div>
+  <button type="button" class="btn btn-primary" onclick="myJavascriptFunction('{{data}}');">Click here to search for the nearby clinics</button>
+  <h2 id="h2"></h2>
+<div id="map"></div>
+
+  <ol id="ol">
+
+  </ol>
+
+  </body>
+</html>
+
+
+

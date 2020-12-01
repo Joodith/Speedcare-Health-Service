@@ -1,0 +1,14 @@
+{% extends 'doctor/doctor_base.html' %}
+{% block body_block %}
+
+<div class="jumbotron">
+<form method="POST">
+    {% csrf_token %}
+    <input type="date" value="Day">
+    <p>
+        <input type="time" value="Time"></p>
+    <p>
+        <input class="btn btn-primary" value="Fix Appointment"></p>
+</form>
+</div>
+{% endblock %}
