@@ -126,7 +126,7 @@ DATABASES['default'].update(db_from_env)
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 # Allow all host headers
-ALLOWED_HOSTS = ['trial3-env.eba-xra9mpqj.us-west-2.elasticbeanstalk.com']
+ALLOWED_HOSTS = ['trial4-env.eba-wjnfspr7.us-west-2.elasticbeanstalk.com']
 
 LANGUAGE_CODE = 'en-us'
 
