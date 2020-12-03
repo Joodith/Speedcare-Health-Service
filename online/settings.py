@@ -159,7 +159,7 @@ PAYPAL_TRUE=True
 #ACCOUNT_AUTHENTICATED_REDIRECT_LOGIN=False
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_ROOT ='static'
 LOGIN_URL = '/auth/login/google-oauth2/'
 LOGIN_REDIRECT_URL="/test/"
 ACCOUNT_LOGOUT_REDIRECT_URL="/thanks/"

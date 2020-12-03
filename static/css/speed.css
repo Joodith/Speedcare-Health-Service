@@ -1,0 +1,33 @@
+
+.whole{
+border:1px solid black;
+}
+img{
+width:1500px;
+height:700px;
+}
+#id{
+width:80px;
+height:60px;
+
+}
+.yes{
+border:1px solid black;
+height:500px;
+width:800px;
+margin-left:80px;
+margin-top:100px;
+background:url("https://uploads.ceylontoday.lk/images/2020/06/rSZU1NqfZpxHRTyvvZPCRM06dmTBJEbe.jpg");
+background-repeat:no-repeat;
+background-size:800px 500px ;
+}
+.pat{
+border:1px solid black;
+height:500px;
+width:800px;
+margin-left:80px;
+margin-top:100px;
+background:url("https://mhealthintelligence.com/images/site/article_headers/_normal/ThinkstockPhotos-668389618.jpg");
+background-repeat:no-repeat;
+background-size:800px 500px ;
+}
