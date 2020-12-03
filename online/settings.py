@@ -160,7 +160,7 @@ PAYPAL_TRUE=True
 
 STATIC_URL = '/static/'
 STATIC_ROOT ='static'
-LOGIN_URL = '/auth/login/google-oauth2/'
+LOGIN_URL = '/accounts/google/login/callback/'
 LOGIN_REDIRECT_URL="/test/"
 ACCOUNT_LOGOUT_REDIRECT_URL="/thanks/"
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
