@@ -68,7 +68,7 @@ def main(email,date,time):
         },
     }
 
-    #event=service.events().insert(calendarId='primary',sendNotifications=True, body=event).execute()
+    event=service.events().insert(calendarId='primary',sendNotifications=True, body=event).execute()
     #events.append(event)
 
 
